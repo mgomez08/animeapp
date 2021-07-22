@@ -1,17 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { makeStyles, Grid } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import { PosterAnime } from "../PosterAnime/PosterAnime";
-
-const useStyles = makeStyles((theme) => ({
-  animes: {
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    flexWrap: "wrap",
-    paddingBottom: 10,
-  },
-}));
 
 function getWindowDimensions() {
   const { innerWidth: width } = window;
@@ -50,35 +39,41 @@ export const HighestAnimes = React.memo(() => {
   const [windowDimensions, setWindowDimensions] = useState(
     getWindowDimensions()
   );
+  const [numPosters, setNumPosters] = useState(5);
   useEffect(() => {
     function handleResize() {
       setWindowDimensions(getWindowDimensions());
+    }
+    if (windowDimensions.width >= 1281) {
+      setNumPosters(5);
+    } else if (windowDimensions.width <= 1280 && windowDimensions.width >= 0) {
+      setNumPosters(4);
     }
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
     // eslint-disable-next-line
   }, [getWindowDimensions()]);
 
-  const classes = useStyles();
   return (
     <Grid
-      className={classes.animes}
       container
       direction="row"
       justifyContent="space-between"
       alignItems="center"
-      spacing={1}
+      spacing={2}
     >
       {data.map((anime, i) => {
-        return (
-          <Grid item>
-            <PosterAnime
-              key={i}
-              nameAnime={anime.nameAnime}
-              urlImage={anime.urlImage}
-            />
-          </Grid>
-        );
+        if (i + 1 <= numPosters) {
+          return (
+            <Grid item xs={6} sm={3} md={3} lg={2} key={i} zeroMinWidth>
+              <PosterAnime
+                nameAnime={anime.nameAnime}
+                urlImage={anime.urlImage}
+              />
+            </Grid>
+          );
+        }
+        return null;
       })}
     </Grid>
   );

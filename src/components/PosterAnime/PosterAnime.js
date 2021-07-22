@@ -1,24 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { CardMedia, makeStyles } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   poster: {
-    maxWidth: 280,
-    height: 390,
-    marginRight: theme.spacing(1),
-    marginBottom: theme.spacing(1),
+    maxWidth: "100%",
+    maxHeight: "100%",
   },
 }));
 export const PosterAnime = ({ nameAnime, urlImage }) => {
   const classes = useStyles();
-  return (
-    <CardMedia
-      title={nameAnime}
-      image={urlImage}
-      className={classes.poster}
-    ></CardMedia>
-  );
+  return <img src={urlImage} alt={nameAnime} className={classes.poster}></img>;
 };
 
 PosterAnime.propTypes = {
