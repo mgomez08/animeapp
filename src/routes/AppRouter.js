@@ -1,10 +1,9 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { CssBaseline, makeStyles } from "@material-ui/core/";
 import { ScrollToTop } from "../utils/scrollToTop";
 import { Header } from "../components/Header/Header";
 import { Footer } from "../components/Footer/Footer";
-import { CssBaseline } from "@material-ui/core";
 
 import { Home } from "../pages/Home";
 import { Error404 } from "../pages/Error404";

@@ -1,6 +1,5 @@
 import React from "react";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
+import { Typography, makeStyles } from "@material-ui/core/";
 import LogoKitsu from "../../assets/png/kitsu.png";
 
 const useStyles = makeStyles((theme) => ({
@@ -10,13 +9,15 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "row",
     [theme.breakpoints.down("xs")]: {
       flexDirection: "column",
+      padding: theme.spacing(2, 2),
     },
     alignItems: "center",
     justifyItems: "center",
     justifyContent: "space-between",
     marginTop: "auto",
     minHeight: "150px",
-    padding: theme.spacing(2, 3),
+    padding: theme.spacing(2, 5),
+    boxShadow: "4px 4px 4px rgba(0, 0, 0, 0.25);",
   },
   about: {
     minHeight: "112px",

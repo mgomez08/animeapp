@@ -1,8 +1,8 @@
 import React from "react";
-import { InputBase, Typography } from "@material-ui/core/";
+import { InputBase, Typography, alpha, makeStyles } from "@material-ui/core/";
 import SearchIcon from "@material-ui/icons/Search";
 import logo from "../../assets/png/Logo.png";
-import { alpha, makeStyles } from "@material-ui/core";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   header: {
@@ -11,10 +11,15 @@ const useStyles = makeStyles((theme) => ({
     minHeight: "60px",
     justifyContent: "space-between",
     alignItems: "center",
-    paddingLeft: theme.spacing(3),
-    paddingRight: theme.spacing(3),
+    padding: theme.spacing(0, 5),
+    [theme.breakpoints.down("xs")]: {
+      padding: theme.spacing(0, 2),
+    },
     backgroundColor: theme.palette.background.paper,
     boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25);",
+  },
+  link: {
+    textDecoration: "none",
   },
   logoContainer: {
     display: "flex",
@@ -68,16 +73,18 @@ export const Header = () => {
   const classes = useStyles();
   return (
     <header className={classes.header}>
-      <div className={classes.logoContainer}>
-        <img src={logo} alt="Logo" />
-        <Typography
-          variant="body1"
-          color="textPrimary"
-          className={classes.logoText}
-        >
-          Wolfa
-        </Typography>
-      </div>
+      <Link to="/" className={classes.link}>
+        <div className={classes.logoContainer}>
+          <img src={logo} alt="Logo" />
+          <Typography
+            variant="body1"
+            color="textPrimary"
+            className={classes.logoText}
+          >
+            Wolfa
+          </Typography>
+        </div>
+      </Link>
       <div className={classes.searchContainer}>
         <div className={classes.searchIcon}>
           <SearchIcon />
