@@ -14,7 +14,7 @@ export const PosterAnime = ({ nameAnime, urlImage }) => {
   const classes = useStyles();
   const url = nameAnime
     .toLowerCase()
-    .replace(/[`~!@#$%^&*()_\-+=\[\]{};:'"\\|\/,.<>?\s]/g, " ")
+    .replace(/[`~!@#$%^&*()_\-+=\]{};:'"\\|,.<>?\s]/g, " ")
     .replace(/^\s+|\s+$/gm, "")
     .replace(/\s+/g, "-");
 

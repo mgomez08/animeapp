@@ -7,6 +7,7 @@ import { Footer } from "../components/Footer/Footer";
 
 import { Home } from "../pages/Home";
 import { Error404 } from "../pages/Error404";
+import { AnimeRoutes } from "./AnimeRoutes";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -32,6 +33,7 @@ export const AppRouter = () => {
         <main className={classes.main}>
           <Switch>
             <Route exact path="/" component={Home} />
+            <Route path="/anime" component={AnimeRoutes} />
             <Route component={Error404} />
           </Switch>
         </main>
