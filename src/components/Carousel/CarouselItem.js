@@ -34,14 +34,14 @@ const useStyles = makeStyles((theme) => ({
     fontStyle: "italic",
   },
 }));
-export const CarouselItem = (props) => {
+export const CarouselItem = ({ anime }) => {
   const classes = useStyles();
   return (
     <>
       <CardMedia
         className={classes.media}
-        image={props.item.link}
-        title={props.item.name}
+        image={anime.coverImgOriginal}
+        title={anime.canonicalTitle}
       ></CardMedia>
       <div className={classes.overlay}>
         <div className={classes.title}>
@@ -51,7 +51,7 @@ export const CarouselItem = (props) => {
             align="center"
             className={classes.fontStyle}
           >
-            {props.item.name}
+            {anime.canonicalTitle}
           </Typography>
         </div>
       </div>
