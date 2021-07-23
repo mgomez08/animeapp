@@ -8,34 +8,7 @@ function getWindowDimensions() {
     width,
   };
 }
-export const HighestAnimes = React.memo(() => {
-  const data = [
-    {
-      nameAnime: "Kimetsu no Yaiba: Natagumo Yama Hen",
-      urlImage:
-        "https://media.kitsu.io/anime/poster_images/44389/large.jpg?1618622765",
-    },
-    {
-      nameAnime: "Shingeki no Kyojin The Final Season",
-      urlImage:
-        "https://media.kitsu.io/anime/poster_images/42422/large.jpg?1607339776",
-    },
-    {
-      nameAnime: "Kimetsu no Yaiba: Mugen Ressha-hen",
-      urlImage:
-        "https://media.kitsu.io/anime/poster_images/42586/large.jpg?1623047315",
-    },
-    {
-      nameAnime: "Kimetsu no Yaiba",
-      urlImage:
-        "https://media.kitsu.io/anime/poster_images/41370/large.jpg?1597699092",
-    },
-    {
-      nameAnime: "Kimetsu no Yaiba: Hashira Gou Kaigi - Chouyashiki Hen",
-      urlImage:
-        "https://media.kitsu.io/anime/poster_images/44390/large.jpg?1618623222",
-    },
-  ];
+export const HighestAnimes = ({ highestAnimes }) => {
   const [windowDimensions, setWindowDimensions] = useState(
     getWindowDimensions()
   );
@@ -62,14 +35,11 @@ export const HighestAnimes = React.memo(() => {
       alignItems="center"
       spacing={2}
     >
-      {data.map((anime, i) => {
+      {highestAnimes.map((anime, i) => {
         if (i + 1 <= numPosters) {
           return (
             <Grid item xs={6} sm={3} md={3} lg={2} key={i} zeroMinWidth>
-              <PosterAnime
-                nameAnime={anime.nameAnime}
-                urlImage={anime.urlImage}
-              />
+              <PosterAnime anime={anime} />
             </Grid>
           );
         }
@@ -77,4 +47,4 @@ export const HighestAnimes = React.memo(() => {
       })}
     </Grid>
   );
-});
+};

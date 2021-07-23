@@ -5,6 +5,7 @@ export function transformAnimeDataBasic(data) {
       canonicalTitle: anime.attributes.canonicalTitle,
       slug: anime.attributes.slug,
       coverImgOriginal: anime.attributes.coverImage.original,
+      posterImgLarge: anime.attributes.posterImage.large,
     });
   });
   return newData;

@@ -10,22 +10,19 @@ const useStyles = makeStyles((theme) => ({
     objectFit: "fill",
   },
 }));
-export const PosterAnime = ({ nameAnime, urlImage }) => {
+export const PosterAnime = ({ anime }) => {
   const classes = useStyles();
-  const url = nameAnime
-    .toLowerCase()
-    .replace(/[`~!@#$%^&*()_\-+=\]{};:'"\\|,.<>?\s]/g, " ")
-    .replace(/^\s+|\s+$/gm, "")
-    .replace(/\s+/g, "-");
-
   return (
-    <Link to={`/anime/${url}`}>
-      <img src={urlImage} alt={nameAnime} className={classes.poster}></img>
+    <Link to={`/anime/${anime.slug}`}>
+      <img
+        src={anime.posterImgLarge}
+        alt={anime.canonicalTitle}
+        className={classes.poster}
+      ></img>
     </Link>
   );
 };
 
 PosterAnime.propTypes = {
-  nameAnime: PropTypes.string.isRequired,
-  urlImage: PropTypes.string.isRequired,
+  anime: PropTypes.object.isRequired,
 };

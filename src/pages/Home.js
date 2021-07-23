@@ -3,8 +3,13 @@ import { Carousel } from "../components/Carousel/Carousel";
 import { Typography, makeStyles } from "@material-ui/core/";
 import { HighestAnimes } from "../components/HighestAnimes/HighestAnimes";
 import { PopularAnimes } from "../components/PopularAnimes/PopularAnimes";
-import { fetchAnimeTreding } from "../api/Anime";
+import {
+  fetchAnimeTreding,
+  fetchHighestAnimes,
+  fetchPopularAnimes,
+} from "../api/Anime";
 import { transformAnimeDataBasic } from "../utils/transformDataAnime";
+import { Loading } from "../components/Loading/Loading";
 
 const useStyles = makeStyles((theme) => ({
   highestAnimes: {
@@ -33,12 +38,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 export const Home = () => {
-  const [animeTreding, setAnimeTreding] = useState();
+  const [animesTreding, setAnimesTreding] = useState();
+  const [highestAnimes, setHighestAnimes] = useState();
+  const [popularAnimes, setPopularAnimes] = useState();
   useEffect(() => {
-    async function fetchDataAnimeTreding() {
-      setAnimeTreding(transformAnimeDataBasic(await fetchAnimeTreding(5)));
+    async function fetchDataAnimes() {
+      setAnimesTreding(transformAnimeDataBasic(await fetchAnimeTreding(5)));
+      setHighestAnimes(transformAnimeDataBasic(await fetchHighestAnimes(5)));
+      setPopularAnimes(transformAnimeDataBasic(await fetchPopularAnimes(5)));
     }
-    fetchDataAnimeTreding();
+    fetchDataAnimes();
   }, []);
   const classes = useStyles();
   return (
@@ -47,7 +56,11 @@ export const Home = () => {
         <Typography variant="h4" color="textPrimary" className={classes.title}>
           Trending Animes This Week
         </Typography>
-        {animeTreding ? <Carousel animeTreding={animeTreding} /> : <></>}
+        {animesTreding ? (
+          <Carousel animesTreding={animesTreding} />
+        ) : (
+          <Loading />
+        )}
       </div>
       <div className={classes.highestAnimes}>
         <Typography
@@ -57,7 +70,11 @@ export const Home = () => {
         >
           Highest Rated Anime
         </Typography>
-        <HighestAnimes />
+        {highestAnimes ? (
+          <HighestAnimes highestAnimes={highestAnimes} />
+        ) : (
+          <Loading />
+        )}
       </div>
       <div className={classes.popularAnimes}>
         <Typography
@@ -67,7 +84,11 @@ export const Home = () => {
         >
           Most Popular Animes
         </Typography>
-        <PopularAnimes />
+        {popularAnimes ? (
+          <PopularAnimes popularAnimes={popularAnimes} />
+        ) : (
+          <Loading />
+        )}
       </div>
     </>
   );
