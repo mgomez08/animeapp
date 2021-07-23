@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 
-export const AnimeScreen = () => {
+export const Anime = () => {
   const { animeSlug } = useParams();
   return (
     <div>

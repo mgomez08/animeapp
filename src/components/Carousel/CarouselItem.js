@@ -1,5 +1,6 @@
 import React from "react";
-import { makeStyles, CardMedia, Typography } from "@material-ui/core";
+import { makeStyles, CardMedia, Typography, Button } from "@material-ui/core";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   media: {
@@ -21,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     display: "flex",
-    flexDirection: "row",
+    flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
     height: 400,
@@ -32,6 +33,12 @@ const useStyles = makeStyles((theme) => ({
   },
   fontStyle: {
     fontStyle: "italic",
+  },
+  button: {
+    marginTop: theme.spacing(4),
+  },
+  link: {
+    textDecoration: "none",
   },
 }));
 export const CarouselItem = ({ anime }) => {
@@ -53,6 +60,15 @@ export const CarouselItem = ({ anime }) => {
           >
             {anime.canonicalTitle}
           </Typography>
+          <Link to={`/anime/${anime.slug}`} className={classes.link}>
+            <Button
+              className={classes.button}
+              variant="outlined"
+              color="primary"
+            >
+              View more
+            </Button>
+          </Link>
         </div>
       </div>
     </>
