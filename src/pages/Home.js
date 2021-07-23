@@ -2,6 +2,7 @@ import React from "react";
 import { Carousel } from "../components/Carousel/Carousel";
 import { Typography, makeStyles } from "@material-ui/core/";
 import { HighestAnimes } from "../components/HighestAnimes/HighestAnimes";
+import { PopularAnimes } from "../components/PopularAnimes/PopularAnimes";
 
 const useStyles = makeStyles((theme) => ({
   highestAnimes: {
@@ -57,6 +58,7 @@ export const Home = () => {
         >
           Most Popular Animes
         </Typography>
+        <PopularAnimes />
       </div>
     </>
   );

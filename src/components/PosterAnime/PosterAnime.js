@@ -6,6 +6,7 @@ const useStyles = makeStyles((theme) => ({
   poster: {
     maxWidth: "100%",
     maxHeight: "100%",
+    objectFit: "fill",
   },
 }));
 export const PosterAnime = ({ nameAnime, urlImage }) => {

@@ -8,32 +8,33 @@ function getWindowDimensions() {
     width,
   };
 }
-export const HighestAnimes = React.memo(() => {
+
+export const PopularAnimes = () => {
   const data = [
     {
-      nameAnime: "Kimetsu no Yaiba: Natagumo Yama Hen",
+      nameAnime: "Shingeki no Kyojin",
       urlImage:
-        "https://media.kitsu.io/anime/poster_images/44389/large.jpg?1618622765",
+        "https://media.kitsu.io/anime/poster_images/7442/large.jpg?1597698856",
     },
     {
-      nameAnime: "Shingeki no Kyojin The Final Season",
+      nameAnime: "One Punch Man",
       urlImage:
-        "https://media.kitsu.io/anime/poster_images/42422/large.jpg?1607339776",
+        "https://media.kitsu.io/anime/poster_images/10740/large.jpg?1597698857",
     },
     {
-      nameAnime: "Kimetsu no Yaiba: Mugen Ressha-hen",
+      nameAnime: "Boku no Hero Academia",
       urlImage:
-        "https://media.kitsu.io/anime/poster_images/42586/large.jpg?1623047315",
+        "https://media.kitsu.io/anime/poster_images/11469/large.jpg?1597698779",
     },
     {
-      nameAnime: "Kimetsu no Yaiba",
+      nameAnime: "Boku no Hero Academia 2",
       urlImage:
-        "https://media.kitsu.io/anime/poster_images/41370/large.jpg?1597699092",
+        "https://media.kitsu.io/anime/poster_images/12268/large.jpg?1597699083",
     },
     {
-      nameAnime: "Kimetsu no Yaiba: Hashira Gou Kaigi - Chouyashiki Hen",
+      nameAnime: "Hagane no Renkinjutsushi: Fullmetal Alchemist",
       urlImage:
-        "https://media.kitsu.io/anime/poster_images/44390/large.jpg?1618623222",
+        "https://media.kitsu.io/anime/poster_images/3936/large.jpg?1597690778",
     },
   ];
   const [windowDimensions, setWindowDimensions] = useState(
@@ -53,7 +54,6 @@ export const HighestAnimes = React.memo(() => {
     return () => window.removeEventListener("resize", handleResize);
     // eslint-disable-next-line
   }, [getWindowDimensions()]);
-
   return (
     <Grid
       container
@@ -77,4 +77,4 @@ export const HighestAnimes = React.memo(() => {
       })}
     </Grid>
   );
-});
+};
