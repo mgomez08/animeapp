@@ -7,7 +7,7 @@ import {
   fetchAnimeTreding,
   fetchHighestAnimes,
   fetchPopularAnimes,
-} from "../api/Anime";
+} from "../api/AnimeAPI";
 import { transformAnimeDataBasic } from "../utils/transformDataAnime";
 import { Loading } from "../components/Loading/Loading";
 

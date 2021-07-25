@@ -37,3 +37,15 @@ export async function fetchPopularAnimes(limit) {
   const { data } = await response.json();
   return data;
 }
+export async function fetchAnimeData(animeSlug) {
+  const url = `${basePath}/anime?fields%5Bcategories%5D=slug%2Ctitle&filter%5Bslug%5D=${animeSlug}&include=categories%2CanimeProductions.producer`;
+  const params = {
+    headers: {
+      "Content-Type": "application/vnd.api+json",
+      Accept: "application/vnd.api+json",
+    },
+  };
+  const response = await fetch(url, params);
+  const { data, included } = await response.json();
+  return { data: data[0], included };
+}

@@ -14,6 +14,7 @@ export const theme = createTheme({
       paper: "#1C2541",
       default: "#0D1631",
     },
+    divider: "#FFFFFF",
     text: {
       primary: "#FFFFFF",
       secondary: "#6FFFE9",

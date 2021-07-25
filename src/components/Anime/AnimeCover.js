@@ -1,8 +1,12 @@
 import React from "react";
-import { makeStyles, CardMedia, Typography, Button } from "@material-ui/core";
-import { Link } from "react-router-dom";
+import { CardMedia, Typography, makeStyles } from "@material-ui/core/";
 
 const useStyles = makeStyles((theme) => ({
+  animeCover: {
+    marginTop: theme.spacing(-3),
+    maxHeight: "100%",
+    maxWidth: "100%",
+  },
   media: {
     height: 400,
     [theme.breakpoints.down("sm")]: {
@@ -16,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     },
     background: " rgba(0, 0, 0, .6)",
     position: "absolute",
-    top: 0,
+    top: 60,
     bottom: 0,
     width: "100%",
   },
@@ -29,48 +33,30 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("sm")]: {
       height: 300,
     },
-    paddingBottom: 100,
-  },
-  fontStyle: {
-    fontStyle: "italic",
-  },
-  button: {
-    marginTop: theme.spacing(4),
-  },
-  link: {
-    textDecoration: "none",
+    paddingBottom: theme.spacing(2),
   },
 }));
-export const CarouselItem = ({ anime }) => {
+export const AnimeCover = ({ animeData }) => {
   const classes = useStyles();
   return (
-    <>
+    <div className={classes.animeCover}>
       <CardMedia
         className={classes.media}
-        image={anime.coverImgOriginal}
-        title={anime.canonicalTitle}
+        image={animeData.attributes.coverImage.original}
+        title={animeData.attributes.canonicalTitle}
       />
       <div className={classes.overlay}>
         <div className={classes.title}>
           <Typography
-            variant="h4"
+            variant="h3"
             color="textPrimary"
             align="center"
             className={classes.fontStyle}
           >
-            {anime.canonicalTitle}
+            {animeData.attributes.canonicalTitle}
           </Typography>
-          <Link to={`/anime/${anime.slug}`} className={classes.link}>
-            <Button
-              className={classes.button}
-              variant="outlined"
-              color="primary"
-            >
-              View more
-            </Button>
-          </Link>
         </div>
       </div>
-    </>
+    </div>
   );
 };
