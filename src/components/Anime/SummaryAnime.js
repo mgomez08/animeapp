@@ -10,6 +10,7 @@ import {
 import { AnimeRanking } from "./AnimeRanking";
 import { AnimeGenders } from "./AnimeGenders";
 import { AnimeDetails } from "./AnimeDetails";
+import { AnimeTrailer } from "./AnimeTrailer";
 
 const useStyles = makeStyles((theme) => ({
   rootTabSummary: {
@@ -84,6 +85,9 @@ export const SummaryAnime = ({ animeData, included }) => {
             src={animeData.attributes.posterImage.small}
             alt={animeData.attributes.canonicalTitle}
           />
+          <Hidden lgUp>
+            <AnimeTrailer animeData={animeData.attributes} />
+          </Hidden>
           <Hidden mdDown>
             <AnimeDetails
               animeData={animeData.attributes}
@@ -92,6 +96,8 @@ export const SummaryAnime = ({ animeData, included }) => {
           </Hidden>
         </Grid>
         <Grid
+          container
+          direction="row"
           className={classes.contentAnime}
           xs={12}
           sm={12}
@@ -99,23 +105,30 @@ export const SummaryAnime = ({ animeData, included }) => {
           lg={9}
           item
         >
-          <Typography variant="h6" className={classes.raiting}>
-            {animeData.attributes.averageRating + "% de Raiting"}
-          </Typography>
-          <Typography variant="body1" className={classes.synopsis}>
-            {animeData.attributes.synopsis}
-          </Typography>
-          <AnimeGenders included={included} />
-          <Divider className={classes.divider} />
-          <AnimeRanking
-            ratingRank={animeData.attributes.ratingRank}
-            popularityRank={animeData.attributes.popularityRank}
-          />
-          <Hidden lgUp>
-            <AnimeDetails
-              animeData={animeData.attributes}
-              included={included}
+          <Grid xs={12} lg={10} item>
+            <Typography variant="h6" className={classes.raiting}>
+              {animeData.attributes.averageRating + "% de Raiting"}
+            </Typography>
+            <Typography variant="body1" className={classes.synopsis}>
+              {animeData.attributes.synopsis}
+            </Typography>
+            <AnimeGenders included={included} />
+            <Divider className={classes.divider} />
+            <AnimeRanking
+              ratingRank={animeData.attributes.ratingRank}
+              popularityRank={animeData.attributes.popularityRank}
             />
+            <Hidden lgUp>
+              <AnimeDetails
+                animeData={animeData.attributes}
+                included={included}
+              />
+            </Hidden>
+          </Grid>
+          <Hidden mdDown>
+            <Grid xs={false} lg={2} item>
+              <AnimeTrailer animeData={animeData.attributes} />
+            </Grid>
           </Hidden>
         </Grid>
       </Grid>

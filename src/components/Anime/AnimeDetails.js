@@ -23,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
   detail: {
     minWidth: "50%",
     marginBottom: theme.spacing(2),
+    wordBreak: "break-word",
   },
 }));
 export const AnimeDetails = ({ animeData, included }) => {
