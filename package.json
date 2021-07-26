@@ -2,7 +2,7 @@
   "name": "animeapp",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://mgomez08.github.io/animeapp",
+  "homepage": "https://mgomez08.github.io/",
   "dependencies": {
     "@material-ui/core": "^4.12.2",
     "@material-ui/icons": "^4.11.2",
