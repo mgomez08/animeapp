@@ -1,7 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { makeStyles, Tabs, Tab, useMediaQuery } from "@material-ui/core/";
-import { SummaryAnime } from "./SummaryAnime";
+import { SummaryAnime } from "./SummaryAnime/SummaryAnime";
+import { EpisodesAnime } from "./EpisodesAnime/EpisodesAnime";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -100,7 +101,7 @@ export const TabsAnime = ({ animeData, included }) => {
         <SummaryAnime animeData={animeData} included={included} />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Episodios
+        <EpisodesAnime animeId={animeData.id} />
       </TabPanel>
       <TabPanel value={value} index={2}>
         Personajes
