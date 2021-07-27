@@ -18,17 +18,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const EpisodesAnime = ({ animeId }) => {
+export const EpisodesAnime = ({ animeData }) => {
   const classes = useStyles();
   const [episodes, setEpisodes] = useState(null);
 
   useEffect(() => {
     async function fetchEpisodes() {
-      const data = await fetchEpisodesAnimeData(animeId);
+      const data = await fetchEpisodesAnimeData(animeData.id);
       setEpisodes(data);
     }
     fetchEpisodes();
-  }, [animeId]);
+  }, [animeData.id]);
   return (
     <div className={classes.rootTabEpisodes}>
       <Typography gutterBottom variant="h4" color="initial" align="center">
@@ -39,7 +39,10 @@ export const EpisodesAnime = ({ animeId }) => {
           episodes.data.map((episode, i) => {
             return (
               <Grid xs={12} sm={6} md={4} lg={3} item key={i}>
-                <CardEpisode episodeData={episode} />
+                <CardEpisode
+                  episodeData={episode}
+                  animeData={animeData.attributes}
+                />
               </Grid>
             );
           })

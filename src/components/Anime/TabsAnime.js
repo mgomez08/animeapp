@@ -101,7 +101,7 @@ export const TabsAnime = ({ animeData, included }) => {
         <SummaryAnime animeData={animeData} included={included} />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <EpisodesAnime animeId={animeData.id} />
+        <EpisodesAnime animeData={animeData} />
       </TabPanel>
       <TabPanel value={value} index={2}>
         Personajes
