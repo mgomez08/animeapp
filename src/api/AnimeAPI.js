@@ -62,3 +62,14 @@ export async function fetchEpisodesAnimeData(animeId) {
   const data = await response.json();
   return data;
 }
+export async function fetchUrl(url) {
+  const params = {
+    headers: {
+      "Content-Type": "application/vnd.api+json",
+      Accept: "application/vnd.api+json",
+    },
+  };
+  const response = await fetch(url, params);
+  const data = await response.json();
+  return data;
+}

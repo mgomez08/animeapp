@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { makeStyles, Tabs, Tab, useMediaQuery } from "@material-ui/core/";
 import { SummaryAnime } from "./SummaryAnime/SummaryAnime";
@@ -50,6 +50,7 @@ function a11yProps(index) {
 
 export const TabsAnime = ({ animeData, included }) => {
   const [value, setValue] = React.useState(0);
+  const [episodes, setEpisodes] = useState(false);
   const scrollableTabs = useMediaQuery("(min-width:500px)");
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -101,7 +102,11 @@ export const TabsAnime = ({ animeData, included }) => {
         <SummaryAnime animeData={animeData} included={included} />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <EpisodesAnime animeData={animeData} />
+        <EpisodesAnime
+          animeData={animeData}
+          episodes={episodes}
+          setEpisodes={setEpisodes}
+        />
       </TabPanel>
       <TabPanel value={value} index={2}>
         Personajes

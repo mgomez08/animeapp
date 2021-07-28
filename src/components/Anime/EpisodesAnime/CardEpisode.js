@@ -22,6 +22,8 @@ const useStyles = makeStyles((theme) => ({
     whiteSpace: "nowrap",
     overflow: "hidden",
     textOverflow: "ellipsis",
+    maxWidth: 549,
+    maxHeight: 364.81,
   },
   titles: {
     display: "inline",
