@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useCallback, useState } from "react";
+import React, { useEffect, useCallback } from "react";
 import { Typography, makeStyles, Grid } from "@material-ui/core/";
 import { fetchEpisodesAnimeData, fetchUrl } from "../../../api/AnimeAPI";
 import { CardEpisode } from "./CardEpisode";
@@ -21,46 +21,45 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const EpisodesAnime = ({ animeData, episodes, setEpisodes }) => {
-  const [nextLink, setNextLink] = useState();
+  let link;
   const classes = useStyles();
-  const externalRef = useRef();
-  const { isNearScreen } = useNearScreen({
-    externalRef: episodes ? null : externalRef,
+  const { isNearScreen, fromRef } = useNearScreen({
+    distance: "400px",
     once: false,
   });
-  console.log(isNearScreen);
-  useEffect(() => {
-    async function fetchEpisodes() {
-      if (!episodes) {
-        const { data, links } = await fetchEpisodesAnimeData(animeData.id);
-        setEpisodes(data);
-        setNextLink(links.next);
+  async function fetchNextEpisodes(firstFetch = true) {
+    if (firstFetch) {
+      const result = await fetchEpisodesAnimeData(animeData.id);
+      setEpisodes(result.data);
+      link = result.links.next;
+    } else {
+      if (link) {
+        const result = await fetchUrl(link);
+        setEpisodes((episodes) => episodes.concat(result.data));
+        if (result.links.next) {
+          link = result.links.next;
+        } else {
+          link = false;
+        }
       }
     }
-    fetchEpisodes();
+  }
+  useEffect(() => {
+    fetchNextEpisodes();
     // eslint-disable-next-line
   }, []);
-  // async function fetchNextEpisodes() {
-  //   const { data, links } = await fetchUrl(
-  //     "https://kitsu.io/api/edge/episodes?filter%5BmediaType%5D=Anime&filter%5Bmedia_id%5D=12&page%5Blimit%5D=10&page%5Boffset%5D=10&sort=number"
-  //   );
-  //   console.log(episodes);
-  //   console.log(data);
-  //   setEpisodes(...episodes, data);
-  //   setNextLink(links.next);
-  // }
-  // const debounceHandleNextEpisodes = useCallback(
-  //   debounce(() => console.log("next episodes"), 500),
-  //   []
-  // );
+  // eslint-disable-next-line
+  const debounceHandleNextEpisodes = useCallback(
+    debounce(() => fetchNextEpisodes(false), 500),
+    []
+  );
 
-  // useEffect(
-  //   function () {
-  //     console.log(isNearScreen);
-  //     if (isNearScreen) debounceHandleNextEpisodes();
-  //   },
-  //   [isNearScreen]
-  // );
+  useEffect(
+    function () {
+      if (isNearScreen) debounceHandleNextEpisodes();
+    },
+    [isNearScreen, debounceHandleNextEpisodes]
+  );
 
   return (
     <div className={classes.rootTabEpisodes}>
@@ -83,7 +82,7 @@ export const EpisodesAnime = ({ animeData, episodes, setEpisodes }) => {
                     episodeData={episode}
                     animeData={animeData.attributes}
                   />
-                  <div ref={externalRef}>hola</div>
+                  <div ref={fromRef}></div>
                 </Grid>
               );
             }
@@ -100,7 +99,6 @@ export const EpisodesAnime = ({ animeData, episodes, setEpisodes }) => {
           <Loading />
         )}
       </Grid>
-      {console.log(episodes)}
     </div>
   );
 };
