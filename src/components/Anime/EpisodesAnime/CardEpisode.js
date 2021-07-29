@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   makeStyles,
   Card,
@@ -7,7 +7,7 @@ import {
   CardMedia,
   Typography,
 } from "@material-ui/core/";
-import { Link } from "react-router-dom";
+import { EpisodeDialog } from "./EpisodeDialog";
 
 const useStyles = makeStyles((theme) => ({
   rootCard: {
@@ -28,64 +28,67 @@ const useStyles = makeStyles((theme) => ({
   titles: {
     display: "inline",
   },
-  link: {
-    textDecoration: "none",
-  },
 }));
 export const CardEpisode = ({ episodeData, animeData }) => {
   const classes = useStyles();
+  const [open, setOpen] = useState(false);
   let dataEpisodeFlag;
   if (episodeData.attributes.thumbnail === null) {
     dataEpisodeFlag = false;
   } else {
     dataEpisodeFlag = true;
   }
+  const handleClick = () => {
+    setOpen(true);
+  };
   return (
-    <Link
-      to={`/anime/${animeData.slug}/${episodeData.attributes.number}`}
-      className={classes.link}
-    >
-      <Card className={classes.rootCard} raised={true}>
-        <CardActionArea>
-          <CardMedia
-            className={classes.cardMedia}
-            component="img"
-            alt={`Imagen del episodio ${
-              dataEpisodeFlag
-                ? episodeData.attributes.canonicalTitle
-                : animeData.canonicalTitle
-            }`}
-            image={
-              dataEpisodeFlag
-                ? episodeData.attributes.thumbnail.original
-                : animeData.coverImage.original
-            }
-            title={`Imagen del episodio ${
-              dataEpisodeFlag
-                ? episodeData.attributes.canonicalTitle
-                : animeData.canonicalTitle
-            }`}
-          />
-          <CardContent className={classes.cardContent}>
-            <Typography
-              variant="body1"
-              color="textSecondary"
-              className={classes.titles}
-            >
-              {`Episodio ${episodeData.attributes.number} `}
-            </Typography>
-            <Typography
-              variant="body1"
-              color="textPrimary"
-              className={classes.titles}
-            >
-              {dataEpisodeFlag
-                ? episodeData.attributes.canonicalTitle
-                : `${episodeData.attributes.length} minutos`}
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-      </Card>
-    </Link>
+    <Card className={classes.rootCard} raised={true}>
+      <CardActionArea onClick={handleClick}>
+        <CardMedia
+          className={classes.cardMedia}
+          component="img"
+          alt={`Imagen del episodio ${
+            dataEpisodeFlag
+              ? episodeData.attributes.canonicalTitle
+              : animeData.canonicalTitle
+          }`}
+          image={
+            dataEpisodeFlag
+              ? episodeData.attributes.thumbnail.original
+              : animeData.coverImage.original
+          }
+          title={`Imagen del episodio ${
+            dataEpisodeFlag
+              ? episodeData.attributes.canonicalTitle
+              : animeData.canonicalTitle
+          }`}
+        />
+        <CardContent className={classes.cardContent}>
+          <Typography
+            variant="body1"
+            color="textSecondary"
+            className={classes.titles}
+          >
+            {`Episodio ${episodeData.attributes.number} `}
+          </Typography>
+          <Typography
+            variant="body1"
+            color="textPrimary"
+            className={classes.titles}
+          >
+            {dataEpisodeFlag
+              ? episodeData.attributes.canonicalTitle
+              : `${episodeData.attributes.length} minutos`}
+          </Typography>
+        </CardContent>
+      </CardActionArea>
+      <EpisodeDialog
+        episodeData={episodeData.attributes}
+        animeData={animeData}
+        open={open}
+        setOpen={setOpen}
+        dataEpisodeFlag={dataEpisodeFlag}
+      />
+    </Card>
   );
 };

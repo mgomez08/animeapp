@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, makeStyles } from "@material-ui/core";
 import YouTubeIcon from "@material-ui/icons/YouTube";
 import { TrailerDialog } from "./TrailerDialog";
@@ -28,10 +28,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const AnimeTrailer = ({ animeData }) => {
-  const [state, setstate] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const classes = useStyles();
   const handleClick = () => {
-    setstate(true);
+    setOpen(true);
   };
   return (
     <>
@@ -43,7 +43,7 @@ export const AnimeTrailer = ({ animeData }) => {
       >
         Ver Trailer
       </Button>
-      <TrailerDialog state={state} setstate={setstate} animeData={animeData} />
+      <TrailerDialog open={open} setOpen={setOpen} animeData={animeData} />
     </>
   );
 };

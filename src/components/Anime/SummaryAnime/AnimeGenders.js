@@ -15,7 +15,7 @@ export const AnimeGenders = ({ included }) => {
   return (
     <>
       <Typography variant="subtitle1" color="textSecondary">
-        Genders:
+        Géneros:
       </Typography>
       <div className="genders">
         {included.map((include, i) => {

@@ -54,7 +54,7 @@ export const Home = () => {
     <>
       <div className="trending-animes">
         <Typography variant="h4" color="textPrimary" className={classes.title}>
-          Trending Animes This Week
+          Animes tendencia esta semana
         </Typography>
         {animesTreding ? (
           <Carousel animesTreding={animesTreding} />
@@ -68,7 +68,7 @@ export const Home = () => {
           color="textSecondary"
           className={classes.titleAnimes}
         >
-          Highest Rated Anime
+          Animes mejor evaluados
         </Typography>
         {highestAnimes ? (
           <HighestAnimes highestAnimes={highestAnimes} />
@@ -82,7 +82,7 @@ export const Home = () => {
           color="textSecondary"
           className={classes.titleAnimes}
         >
-          Most Popular Animes
+          Animes más populares
         </Typography>
         {popularAnimes ? (
           <PopularAnimes popularAnimes={popularAnimes} />

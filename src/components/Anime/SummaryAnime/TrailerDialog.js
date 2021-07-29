@@ -28,10 +28,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const TrailerDialog = ({ state, setstate, animeData }) => {
+export const TrailerDialog = ({ open, setOpen, animeData }) => {
   const classes = useStyles();
   const handleClose = () => {
-    setstate(false);
+    setOpen(false);
   };
   return (
     <div>
@@ -40,7 +40,7 @@ export const TrailerDialog = ({ state, setstate, animeData }) => {
         aria-labelledby="customized-dialog-title"
         fullWidth={true}
         maxWidth="lg"
-        open={state}
+        open={open}
       >
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
           {`Trailer de ${animeData.canonicalTitle}`}

@@ -37,7 +37,7 @@ export const AnimeDetails = ({ animeData, included }) => {
         align="center"
         className={classes.title}
       >
-        Anime Details
+        Detalles del anime
       </Typography>
       <Grid
         container
@@ -146,7 +146,9 @@ export const AnimeDetails = ({ animeData, included }) => {
             color="textPrimary"
             className={classes.detail}
           >
-            {animeData.status}
+            {animeData.status === "current"
+              ? "En emisión"
+              : animeData.status === "finished" && "finalizado"}
           </Typography>
         </Grid>
         <Grid
@@ -198,9 +200,13 @@ export const AnimeDetails = ({ animeData, included }) => {
             color="textPrimary"
             className={classes.detail}
           >
-            {`${minutesToHours(animeData.totalLength)} Horas(s) (de ${
-              animeData.episodeLength
-            } min cada episodio)`}
+            {animeData.subtype === "movie"
+              ? `${animeData.episodeLength} min`
+              : animeData.status === "current"
+              ? `${animeData.episodeLength} min cada episodio`
+              : `${minutesToHours(animeData.totalLength)} Horas(s) (de ${
+                  animeData.episodeLength
+                } min cada episodio)`}
           </Typography>
         </Grid>
         <Grid
