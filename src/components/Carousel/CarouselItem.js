@@ -47,8 +47,8 @@ export const CarouselItem = ({ anime }) => {
     <>
       <CardMedia
         className={classes.media}
-        image={anime.coverImgOriginal}
-        title={anime.canonicalTitle}
+        image={anime.attributes.coverImage.original}
+        title={anime.attributes.canonicalTitle}
       />
       <div className={classes.overlay}>
         <div className={classes.title}>
@@ -58,7 +58,7 @@ export const CarouselItem = ({ anime }) => {
             align="center"
             className={classes.fontStyle}
           >
-            {anime.canonicalTitle}
+            {anime.attributes.canonicalTitle}
           </Typography>
           <Link to={`/anime/${anime.slug}`} className={classes.link}>
             <Button

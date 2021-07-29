@@ -1,6 +1,6 @@
-export function transformAnimeDataBasic(data) {
+export function transformAnimeDataBasic(animeData) {
   let newData = [];
-  data.map((anime) => {
+  animeData.data.map((anime) => {
     return newData.push({
       canonicalTitle: anime.attributes.canonicalTitle,
       slug: anime.attributes.slug,

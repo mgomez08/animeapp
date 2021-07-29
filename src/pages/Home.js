@@ -8,7 +8,6 @@ import {
   fetchHighestAnimes,
   fetchPopularAnimes,
 } from "../api/AnimeAPI";
-import { transformAnimeDataBasic } from "../utils/transformDataAnime";
 import { Loading } from "../components/Loading/Loading";
 
 const useStyles = makeStyles((theme) => ({
@@ -43,9 +42,9 @@ export const Home = () => {
   const [popularAnimes, setPopularAnimes] = useState();
   useEffect(() => {
     async function fetchDataAnimes() {
-      setAnimesTreding(transformAnimeDataBasic(await fetchAnimeTreding(5)));
-      setHighestAnimes(transformAnimeDataBasic(await fetchHighestAnimes(5)));
-      setPopularAnimes(transformAnimeDataBasic(await fetchPopularAnimes(5)));
+      setAnimesTreding((await fetchAnimeTreding(5)).data);
+      setHighestAnimes((await fetchHighestAnimes(5)).data);
+      setPopularAnimes((await fetchPopularAnimes(5)).data);
     }
     fetchDataAnimes();
   }, []);

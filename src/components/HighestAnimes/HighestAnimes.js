@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Grid } from "@material-ui/core";
+import { Grid, Typography } from "@material-ui/core";
 import { PosterAnime } from "../PosterAnime/PosterAnime";
+import { Link } from "react-router-dom";
 
 function getWindowDimensions() {
   const { innerWidth: width } = window;
@@ -45,6 +46,13 @@ export const HighestAnimes = ({ highestAnimes }) => {
         }
         return null;
       })}
+      <Grid container justifyContent="flex-end" item xs={12}>
+        <Link to="/highest-animes" style={{ textDecoration: "none" }}>
+          <Typography variant="body1" color="textSecondary">
+            Ver más
+          </Typography>
+        </Link>
+      </Grid>
     </Grid>
   );
 };

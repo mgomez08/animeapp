@@ -13,10 +13,10 @@ const useStyles = makeStyles((theme) => ({
 export const PosterAnime = ({ anime }) => {
   const classes = useStyles();
   return (
-    <Link to={`/anime/${anime.slug}`}>
+    <Link to={`/anime/${anime.attributes.slug}`}>
       <img
-        src={anime.posterImgLarge}
-        alt={anime.canonicalTitle}
+        src={anime.attributes.posterImage.large}
+        alt={anime.attributes.canonicalTitle}
         className={classes.poster}
       ></img>
     </Link>

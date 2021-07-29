@@ -9,7 +9,7 @@ export async function fetchAnimeTreding(limit) {
     },
   };
   const response = await fetch(url, params);
-  const { data } = await response.json();
+  const data = await response.json();
   return data;
 }
 
@@ -22,7 +22,7 @@ export async function fetchHighestAnimes(limit) {
     },
   };
   const response = await fetch(url, params);
-  const { data } = await response.json();
+  const data = await response.json();
   return data;
 }
 export async function fetchPopularAnimes(limit) {
@@ -34,7 +34,7 @@ export async function fetchPopularAnimes(limit) {
     },
   };
   const response = await fetch(url, params);
-  const { data } = await response.json();
+  const data = await response.json();
   return data;
 }
 export async function fetchAnimeData(animeSlug) {
