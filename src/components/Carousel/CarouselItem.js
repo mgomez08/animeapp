@@ -60,7 +60,7 @@ export const CarouselItem = ({ anime }) => {
           >
             {anime.attributes.canonicalTitle}
           </Typography>
-          <Link to={`/anime/${anime.slug}`} className={classes.link}>
+          <Link to={`/anime/${anime.attributes.slug}`} className={classes.link}>
             <Button
               className={classes.button}
               variant="outlined"
