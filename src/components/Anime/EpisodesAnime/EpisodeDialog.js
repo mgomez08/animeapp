@@ -66,7 +66,9 @@ export const EpisodeDialog = ({
           >
             {dataEpisodeFlag
               ? episodeData.canonicalTitle
-              : `${episodeData.length} minutos`}
+              : episodeData.length
+              ? `${episodeData.length} minutos`
+              : null}
           </Typography>
         </div>
         <DialogContent dividers>
@@ -74,7 +76,7 @@ export const EpisodeDialog = ({
             {episodeData.synopsis}
           </Typography>
           <Typography variant="body1" color="textPrimary">
-            {`Duración: ${episodeData.length} min`}
+            {episodeData.length ? `Duración: ${episodeData.length} min` : null}
           </Typography>
           <Typography variant="body1" color="textPrimary">
             {dataEpisodeFlag
@@ -96,7 +98,7 @@ export const EpisodeDialog = ({
               image={
                 dataEpisodeFlag
                   ? episodeData.thumbnail.original
-                  : animeData.coverImage.original
+                  : animeData.posterImage.original
               }
               title={`Imagen del episodio ${
                 dataEpisodeFlag

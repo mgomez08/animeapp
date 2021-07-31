@@ -11,19 +11,19 @@ import { EpisodeDialog } from "./EpisodeDialog";
 
 const useStyles = makeStyles((theme) => ({
   rootCard: {
-    maxWidth: 549,
-    maxHeight: 364.81,
+    // maxWidth: 549,
+    // maxHeight: 364.81,
   },
   cardMedia: {
-    maxWidth: 549,
-    maxHeight: 364.81,
+    // maxWidth: 549,
+    // maxHeight: 364.81,
   },
   cardContent: {
     whiteSpace: "nowrap",
     overflow: "hidden",
     textOverflow: "ellipsis",
-    maxWidth: 549,
-    maxHeight: 364.81,
+    // maxWidth: 549,
+    // maxHeight: 364.81,
   },
   titles: {
     display: "inline",
@@ -54,8 +54,10 @@ export const CardEpisode = ({ episodeData, animeData }) => {
           }`}
           image={
             dataEpisodeFlag
-              ? episodeData.attributes.thumbnail.original
-              : animeData.coverImage.original
+              ? episodeData.attributes.thumbnail
+                ? episodeData.attributes.thumbnail.original
+                : animeData.posterImage.original
+              : animeData.posterImage.original
           }
           title={`Imagen del episodio ${
             dataEpisodeFlag
@@ -78,7 +80,9 @@ export const CardEpisode = ({ episodeData, animeData }) => {
           >
             {dataEpisodeFlag
               ? episodeData.attributes.canonicalTitle
-              : `${episodeData.attributes.length} minutos`}
+              : episodeData.attributes.length
+              ? `${episodeData.attributes.length} minutos`
+              : null}
           </Typography>
         </CardContent>
       </CardActionArea>

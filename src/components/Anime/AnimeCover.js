@@ -42,7 +42,11 @@ export const AnimeCover = ({ animeData }) => {
     <div className={classes.animeCover}>
       <CardMedia
         className={classes.media}
-        image={animeData.attributes.coverImage.original}
+        image={
+          animeData.attributes.coverImage
+            ? animeData.attributes.coverImage.original
+            : "https://images2.alphacoders.com/788/thumb-1920-788976.jpg"
+        }
         title={animeData.attributes.canonicalTitle}
       />
       <div className={classes.overlay}>
