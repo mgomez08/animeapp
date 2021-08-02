@@ -9,6 +9,7 @@ import {
   fetchPopularAnimes,
 } from "../api/AnimeAPI";
 import { Loading } from "../components/Loading/Loading";
+import { Helmet } from "react-helmet";
 
 const useStyles = makeStyles((theme) => ({
   highestAnimes: {
@@ -51,6 +52,16 @@ export const Home = () => {
   const classes = useStyles();
   return (
     <>
+      <Helmet>
+        <title>Anime App</title>
+        <meta name="description" content="Animes tendencia esta semana"></meta>
+        <meta name="description" content="Animes más populares"></meta>
+        <meta name="description" content="Animes mejor puntuados"></meta>
+        <meta
+          name="keywords"
+          content="anime, noticias de anime, mejores animes"
+        ></meta>
+      </Helmet>
       <div className="trending-animes">
         <Typography variant="h4" color="textPrimary" className={classes.title}>
           Animes tendencia esta semana
@@ -58,7 +69,12 @@ export const Home = () => {
         {animesTreding ? (
           <Carousel animesTreding={animesTreding} />
         ) : (
-          <Loading />
+          <>
+            <Helmet>
+              <title>Cargando...</title>
+            </Helmet>
+            <Loading />
+          </>
         )}
       </div>
       <div className={classes.highestAnimes}>

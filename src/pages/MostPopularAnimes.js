@@ -5,6 +5,7 @@ import { fetchPopularAnimes, fetchUrl } from "../api/AnimeAPI";
 import debounce from "just-debounce-it";
 import { Loading } from "../components/Loading/Loading";
 import { PosterAnime } from "../components/PosterAnime/PosterAnime";
+import { Helmet } from "react-helmet";
 
 const useStyles = makeStyles((theme) => ({
   rootHighestRatedAnimes: {
@@ -62,31 +63,46 @@ export const MostPopularAnimes = () => {
     [isNearScreen, debounceHandleNextAnimes]
   );
   return (
-    <div className={classes.rootHighestRatedAnimes}>
-      <Typography variant="h4" color="textPrimary">
-        Animes mejor evaluados
-      </Typography>
-      <Grid container direction="row" alignItems="center" spacing={2}>
-        {animes ? (
-          animes.map((anime, i) => {
-            if (animes.length - 1 === i) {
+    <>
+      <Helmet>
+        <title>Animes más populares | Anime App</title>
+        <meta name="description" content="Animes más populares"></meta>
+        <meta
+          name="keywords"
+          content="anime, noticias de anime, mejores animes"
+        ></meta>
+      </Helmet>
+      <div className={classes.rootHighestRatedAnimes}>
+        <Typography variant="h4" color="textPrimary">
+          Animes más populares
+        </Typography>
+        <Grid container direction="row" alignItems="center" spacing={2}>
+          {animes ? (
+            animes.map((anime, i) => {
+              if (animes.length - 1 === i) {
+                return (
+                  <Grid item xs={6} sm={3} md={3} lg={2} key={i} zeroMinWidth>
+                    <PosterAnime anime={anime} />
+                    <div ref={fromRef}></div>
+                  </Grid>
+                );
+              }
               return (
                 <Grid item xs={6} sm={3} md={3} lg={2} key={i} zeroMinWidth>
                   <PosterAnime anime={anime} />
-                  <div ref={fromRef}></div>
                 </Grid>
               );
-            }
-            return (
-              <Grid item xs={6} sm={3} md={3} lg={2} key={i} zeroMinWidth>
-                <PosterAnime anime={anime} />
-              </Grid>
-            );
-          })
-        ) : (
-          <Loading />
-        )}
-      </Grid>
-    </div>
+            })
+          ) : (
+            <>
+              <Helmet>
+                <title>Cargando...</title>
+              </Helmet>
+              <Loading />
+            </>
+          )}
+        </Grid>
+      </div>
+    </>
   );
 };
