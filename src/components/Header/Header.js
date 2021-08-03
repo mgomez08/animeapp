@@ -1,8 +1,9 @@
 import React from "react";
-import { InputBase, Typography, alpha, makeStyles } from "@material-ui/core/";
-import SearchIcon from "@material-ui/icons/Search";
+import { Typography, makeStyles } from "@material-ui/core/";
+
 import logo from "../../assets/png/Logo.png";
 import { Link } from "react-router-dom";
+import { SearchBox } from "./SearchBox";
 
 const useStyles = makeStyles((theme) => ({
   header: {
@@ -32,45 +33,10 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "7px",
     marginTop: "7px",
   },
-  searchContainer: {
-    position: "relative",
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: alpha(theme.palette.common.white, 0.15),
-    "&:hover": {
-      backgroundColor: alpha(theme.palette.common.white, 0.25),
-    },
-    marginLeft: 0,
-    [theme.breakpoints.up("sm")]: {
-      marginLeft: theme.spacing(1),
-      width: "auto",
-    },
-  },
-  searchIcon: {
-    padding: theme.spacing(0, 2),
-    height: "100%",
-    position: "absolute",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  inputInput: {
-    padding: theme.spacing(1, 1, 1, 0),
-    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
-    transition: theme.transitions.create("width"),
-    width: "100%",
-    [theme.breakpoints.down("sm")]: {
-      width: "12ch",
-    },
-    [theme.breakpoints.up("sm")]: {
-      width: "12ch",
-      "&:focus": {
-        width: "20ch",
-      },
-    },
-  },
 }));
 export const Header = () => {
   const classes = useStyles();
+
   return (
     <header className={classes.header}>
       <Link to="/" className={classes.link}>
@@ -85,19 +51,7 @@ export const Header = () => {
           </Typography>
         </div>
       </Link>
-      <div className={classes.searchContainer}>
-        <div className={classes.searchIcon}>
-          <SearchIcon />
-        </div>
-        <InputBase
-          placeholder="Buscar..."
-          classes={{
-            root: classes.inputRoot,
-            input: classes.inputInput,
-          }}
-          inputProps={{ "aria-label": "search" }}
-        />
-      </div>
+      <SearchBox />
     </header>
   );
 };

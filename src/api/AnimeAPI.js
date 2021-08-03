@@ -73,3 +73,15 @@ export async function fetchUrl(url) {
   const data = await response.json();
   return data;
 }
+export async function fetchSearchAnime(keyword) {
+  const url = `${basePath}/anime?filter[text]=${keyword}`;
+  const params = {
+    headers: {
+      "Content-Type": "application/vnd.api+json",
+      Accept: "application/vnd.api+json",
+    },
+  };
+  const response = await fetch(url, params);
+  const data = await response.json();
+  return data;
+}
