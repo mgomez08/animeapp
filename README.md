@@ -1,6 +1,6 @@
 # _Anime app_
 
-![Logo](https://raw.githubusercontent.com/mgomez08/animeapp/master/src/assets/png/Logo.png)
+![Logo](https://raw.githubusercontent.com/mgomez08/animeapp/master/src/assets/png/LogoIcon.png)
 
 This is a personal project to practice and gain experience in the following technologies.
 
