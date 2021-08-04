@@ -1,7 +1,7 @@
 import React from "react";
 import { Typography, makeStyles } from "@material-ui/core/";
 
-import logo from "../../assets/png/Logo.png";
+import logo from "../../assets/png/logo.png";
 import { Link } from "react-router-dom";
 import { SearchBox } from "./SearchBox";
 
@@ -19,6 +19,10 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
     boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25);",
   },
+  logo: {
+    height: 35,
+    width: 35,
+  },
   link: {
     textDecoration: "none",
   },
@@ -31,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
   },
   logoText: {
     marginLeft: "7px",
-    marginTop: "7px",
+    marginTop: "4px",
   },
 }));
 export const Header = () => {
@@ -41,13 +45,13 @@ export const Header = () => {
     <header className={classes.header}>
       <Link to="/" className={classes.link}>
         <div className={classes.logoContainer}>
-          <img src={logo} alt="Logo" />
+          <img src={logo} alt="Logo" className={classes.logo} />
           <Typography
-            variant="body1"
+            variant="h6"
             color="textPrimary"
             className={classes.logoText}
           >
-            Wolfa
+            Anime App
           </Typography>
         </div>
       </Link>

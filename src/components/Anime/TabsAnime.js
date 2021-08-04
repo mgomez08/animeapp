@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { makeStyles, Tabs, Tab, useMediaQuery } from "@material-ui/core/";
+import { makeStyles, Tabs, Tab } from "@material-ui/core/";
 import { SummaryAnime } from "./SummaryAnime/SummaryAnime";
 import { EpisodesAnime } from "./EpisodesAnime/EpisodesAnime";
 
@@ -51,7 +51,6 @@ function a11yProps(index) {
 export const TabsAnime = ({ animeData, included }) => {
   const [value, setValue] = React.useState(0);
   const [episodes, setEpisodes] = useState(false);
-  const scrollableTabs = useMediaQuery("(min-width:500px)");
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -64,8 +63,8 @@ export const TabsAnime = ({ animeData, included }) => {
         className={classes.tabs}
         indicatorColor="primary"
         textColor="inherit"
-        variant={scrollableTabs ? "standard" : "scrollable"}
-        centered={scrollableTabs}
+        variant="standard"
+        centered={true}
         scrollButtons="on"
         aria-label="scrollable auto tabs example"
       >
@@ -83,20 +82,6 @@ export const TabsAnime = ({ animeData, included }) => {
           label="Episodios"
           {...a11yProps(1)}
         />
-        <Tab
-          classes={{
-            selected: classes.textSelected,
-          }}
-          label="Personajes"
-          {...a11yProps(2)}
-        />
-        <Tab
-          classes={{
-            selected: classes.textSelected,
-          }}
-          label="Franquicias"
-          {...a11yProps(3)}
-        />
       </Tabs>
       <TabPanel value={value} index={0}>
         <SummaryAnime animeData={animeData} included={included} />
@@ -107,12 +92,6 @@ export const TabsAnime = ({ animeData, included }) => {
           episodes={episodes}
           setEpisodes={setEpisodes}
         />
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        Personajes
-      </TabPanel>
-      <TabPanel value={value} index={3}>
-        Franquicias
       </TabPanel>
     </div>
   );
