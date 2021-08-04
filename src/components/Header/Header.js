@@ -1,7 +1,7 @@
 import React from "react";
 import { Typography, makeStyles } from "@material-ui/core/";
 
-import logo from "../../assets/png/logo.png";
+import logo from "../../assets/png/LogoIcon.png";
 import { Link } from "react-router-dom";
 import { SearchBox } from "./SearchBox";
 
