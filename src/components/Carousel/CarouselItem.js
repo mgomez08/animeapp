@@ -66,7 +66,7 @@ export const CarouselItem = ({ anime }) => {
               variant="outlined"
               color="primary"
             >
-              View more
+              Ver más
             </Button>
           </Link>
         </div>
