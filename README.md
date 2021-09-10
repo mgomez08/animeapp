@@ -1,6 +1,7 @@
-# _Anime app_
+# ![Logo](https://raw.githubusercontent.com/mgomez08/animeapp/master/src/assets/png/LogoIcon.png) _Anime app_
 
-![Logo](https://raw.githubusercontent.com/mgomez08/animeapp/master/src/assets/png/LogoIcon.png)
+
+It is a wiki where you can consult information about your anime of interest, also which anime are trending weekly, the best evaluated, the most popular. Making use of Kitsu API.
 
 This is a personal project to practice and gain experience in the following technologies.
 
